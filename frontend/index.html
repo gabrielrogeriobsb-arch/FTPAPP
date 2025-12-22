@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Fichas Técnicas | SOTAVENTO</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍴 Gerador de Fichas Técnicas</h1>
+            <p class="subtitle">SOTAVENTO Consultoria Gastronômica</p>
+        </header>
+
+        <main>
+            <!-- Formulário de Entrada -->
+            <div class="card">
+                <h2>Envie sua Receita</h2>
+                
+                <div class="tabs">
+                    <button class="tab active" data-tab="texto">📝 Texto</button>
+                    <button class="tab" data-tab="link">🔗 Link</button>
+                    <button class="tab" data-tab="foto">📷 Foto</button>
+                </div>
+
+                <div class="tab-content">
+                    <!-- Aba Texto -->
+                    <div class="tab-pane active" id="texto">
+                        <textarea id="receitaTexto" placeholder="Cole aqui o texto da receita completa (nome, ingredientes e modo de preparo)..."></textarea>
+                    </div>
+
+                    <!-- Aba Link -->
+                    <div class="tab-pane" id="link">
+                        <input type="url" id="receitaLink" placeholder="https://exemplo.com/receita">
+                        <small>Cole o link direto para a receita (ex: Panelinha, TudoGostoso)</small>
+                    </div>
+
+                    <!-- Aba Foto -->
+                    <div class="tab-pane" id="foto">
+                        <div class="upload-area" id="uploadArea">
+                            <input type="file" id="receitaFoto" accept="image/*" hidden>
+                            <div class="upload-placeholder">
+                                <span class="upload-icon">📸</span>
+                                <p>Clique ou arraste uma foto da receita</p>
+                                <small>JPG, PNG até 10MB</small>
+                            </div>
+                            <div class="upload-preview" id="previewArea" style="display:none;">
+                                <img id="previewImage" alt="Preview">
+                                <button class="btn-secondary" id="removeImage">Remover</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="processarBtn" class="btn-primary">
+                    Gerar Ficha Técnica
+                </button>
+            </div>
+
+            <!-- Loading -->
+            <div id="loading" class="loading" style="display:none;">
+                <div class="spinner"></div>
+                <p>Processando receita...</p>
+            </div>
+
+            <!-- Resultado -->
+            <div id="resultado" class="card resultado" style="display:none;">
+                <h2>✅ Ficha Técnica Gerada</h2>
+                
+                <div class="resultado-info">
+                    <h3 id="resultadoNome"></h3>
+                    
+                    <div id="avisos" class="avisos" style="display:none;">
+                        <h4>⚠️ Atenção - Ingredientes com 0g</h4>
+                        <ul id="listaAvisos"></ul>
+                        <p><small>Estes ingredientes precisam ter o peso ajustado manualmente na planilha.</small></p>
+                    </div>
+                </div>
+
+                <button id="downloadBtn" class="btn-primary">
+                    📥 Download Ficha Técnica (.xlsx)
+                </button>
+
+                <button id="novaFichaBtn" class="btn-secondary">
+                    Processar Nova Receita
+                </button>
+            </div>
+
+            <!-- Erro -->
+            <div id="erro" class="card erro" style="display:none;">
+                <h2>❌ Erro ao Processar</h2>
+                <p id="erroMsg"></p>
+                <button id="tentarNovamenteBtn" class="btn-secondary">
+                    Tentar Novamente
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 SOTAVENTO Consultoria Gastronômica | Desenvolvido com Claude AI</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
